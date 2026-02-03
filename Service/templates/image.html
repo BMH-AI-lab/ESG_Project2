@@ -1,0 +1,478 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <title>SolarAI | 이미지 진단</title>
+    <link rel="stylesheet" href="/static/style.css" />
+  </head>
+  <body>
+    <!-- HEADER 스크롤에 따라 내려가기 -->
+    <header class="nav sticky-header">
+      <div class="logo">
+        <a href="/" class="home-link" onclick="resetArduino()">
+          <img src="/static/home_dark.png" class="home-icon" />
+        </a>
+      </div>
+      <nav class="nav-buttons">
+        <a href="/image" class="nav-btn active">이미지 진단</a>
+        <a href="/live" class="nav-btn" onclick="resetArduino()">실시간 진단</a>
+      </nav>
+    </header>
+
+    <section
+      class="hero sub-hero"
+      style="background-image: url(&quot;/static/card_image.jpg&quot;)"
+    >
+      <div class="hero-inner">
+        <div class="hero-text">
+          <h1>태양광 패널 이미지 정밀 분석</h1>
+          <p>
+            업로드한 이미지를 분석하여<br />태양광 패널의 상태를 진단합니다.
+          </p>
+          <a href="/intro" class="hero-home-btn" onclick="resetArduino()"
+            >사용방법</a
+          >
+        </div>
+      </div>
+    </section>
+
+    <main class="page-content">
+      <section class="detect-section">
+        <div class="upload-panel">
+          <h2>이미지 업로드</h2>
+          <p class="desc">
+            태양광 패널 이미지를 업로드하면 AI가 자동으로 분석합니다.
+          </p>
+
+          <input type="file" id="imageInput" accept="image/*" hidden multiple />
+          <input
+            type="file"
+            id="folderInput"
+            accept="image/*"
+            hidden
+            webkitdirectory
+            directory
+            multiple
+          />
+
+          <label class="upload-box" id="drop-zone" for="imageInput">
+            <div class="upload-inner">
+              <span class="upload-icon">📷</span>
+              <strong>이미지 / 폴더 선택</strong>
+              <p>클릭 또는 드래그 (이미지·폴더 가능)</p>
+            </div>
+          </label>
+
+          <p id="notice" class="note" style="font-weight: bold"></p>
+        </div>
+
+        <div class="result-panel">
+          <h2>탐지 결과</h2>
+          <p class="desc">유형별 정확도 및 탐지 수</p>
+          <div class="match-metrics" id="metrics"></div>
+        </div>
+
+        <div class="result-image-large">
+          <img id="resultImgTag" />
+          <p class="note" id="resultNote">📷 이미지 탐지 결과 사진</p>
+          <div id="analysisArea" class="analysis-area"></div>
+        </div>
+
+        <div class="history-row">
+          <h3>Analyzed Images</h3>
+          <div class="image-list" id="imageList"></div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        <div>
+          <strong>SolarAI</strong>
+          <p>©2025 SolarAI. All rights reserved.</p>
+          <p>주소 : 서울특별시 은평구 은평로3가길 29-2</p>
+          <p>Tel : 02-5014-2907</p>
+          <div>
+            <a>이용약관 | </a>
+            <a>개인정보처리방침 | </a>
+            <a>문의하기</a>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <script>
+      /* ================= 타이핑 효과 ================= */
+      function typeWriter(element, text, speed = 18) {
+        element.innerHTML = "";
+        let i = 0;
+
+        function typing() {
+          if (i < text.length) {
+            element.innerHTML += text[i] === "\n" ? "<br>" : text[i];
+            i++;
+            setTimeout(typing, speed);
+          }
+        }
+        typing();
+      }
+
+      /* ================= 설정 ================= */
+      const CLASS_ORDER = [
+        "Anomaly Solar Panel",
+        "Normal Solar Panel",
+        "Snow",
+        "Structural Damage",
+        "Surface Contaminant", // n 모델 사용시 s 추가
+      ];
+
+      const imageInput = document.getElementById("imageInput");
+      const folderInput = document.getElementById("folderInput");
+      const dropZone = document.getElementById("drop-zone");
+
+      const resultImg = document.getElementById("resultImgTag");
+      const resultNote = document.getElementById("resultNote");
+      const analysisArea = document.getElementById("analysisArea");
+      const metricsBox = document.getElementById("metrics");
+      const notice = document.getElementById("notice");
+      const imageList = document.getElementById("imageList");
+
+      let lastImageURL = null;
+      const imageResultCache = {};
+
+      /* ✅ Gemini 분석 결과 캐시 (이미지별) */
+      const geminiResultCache = {};
+
+      /* ================= 🔴 추가된 유일한 함수 ================= */
+      function updateNoticeByStats(stats) {
+        if (!stats) return;
+
+        const hasAnomaly = Object.entries(stats).some(
+          ([cls, item]) => cls !== "Normal Solar Panel" && item.count > 0,
+        );
+
+        if (hasAnomaly) {
+          notice.innerText = "🚨 이상 탐지됨 · 이상 상태입니다";
+          notice.style.color = "#dc2626";
+        } else {
+          notice.innerText = "✅ 정상 상태입니다";
+          notice.style.color = "#16a34a";
+        }
+      }
+
+      /* ================= 유틸 ================= */
+      function isImageFile(file) {
+        return file && file.type && file.type.startsWith("image/");
+      }
+
+      function getColor(p) {
+        if (p >= 80) return "#22c55e";
+        if (p >= 50) return "#facc15";
+        return "#ef4444";
+      }
+
+      function renderMetrics(stats = {}) {
+        metricsBox.innerHTML = "";
+        CLASS_ORDER.forEach((cls) => {
+          const item = stats[cls] || { percent: 0, count: 0 };
+          const p = Math.round(item.percent || 0);
+          metricsBox.innerHTML += `
+      <div class="metric">
+        <div class="metric-label">
+          <span>${cls}</span>
+          <span>${p}% (${item.count}건)</span>
+        </div>
+        <div class="metric-bar">
+          <div class="metric-fill" style="width:${p}%; background:${getColor(p)};"></div>
+        </div>
+      </div>
+    `;
+        });
+      }
+
+      function showAnalyzeButton() {
+        analysisArea.innerHTML = "";
+
+        const btn = document.createElement("button");
+        btn.className = "analysis-btn";
+        btn.innerText = "탐지 결과 분석하기";
+        btn.onclick = analyzeCurrentImage;
+
+        analysisArea.appendChild(btn);
+      }
+
+      function hideAnalyzeButton() {
+        analysisArea.innerHTML = "";
+      }
+
+      /* ✅ 선택 이미지 변경 시: Gemini UI 초기화 + 캐시 있으면 즉시 표시 */
+      function resetGeminiUIForImage(imgURL) {
+        hideAnalyzeButton();
+
+        if (geminiResultCache[imgURL]) {
+          showGeminiResult(geminiResultCache[imgURL], true);
+        } else {
+          showAnalyzeButton();
+        }
+      }
+
+      /* ================= 폴더 재귀 처리 ================= */
+      function readAllEntries(reader) {
+        return new Promise((resolve) => {
+          const entries = [];
+          const read = () => {
+            reader.readEntries((batch) => {
+              if (!batch.length) return resolve(entries);
+              entries.push(...batch);
+              read();
+            });
+          };
+          read();
+        });
+      }
+
+      async function traverseEntry(entry, outFiles) {
+        if (entry.isFile) {
+          await new Promise((resolve) => {
+            entry.file((file) => {
+              if (isImageFile(file)) outFiles.push(file);
+              resolve();
+            });
+          });
+        } else if (entry.isDirectory) {
+          const reader = entry.createReader();
+          const entries = await readAllEntries(reader);
+          for (const e of entries) {
+            await traverseEntry(e, outFiles);
+          }
+        }
+      }
+
+      function updateHistoryVisibility() {
+        const historyRow = document.querySelector(".history-row");
+        if (!historyRow) return;
+
+        if (imageList.children.length === 0) {
+          historyRow.classList.remove("show");
+        }
+      }
+
+      /* ================= 탐지 ================= */
+      async function detectImage(file, isMain = false) {
+        const formData = new FormData();
+        formData.append("image", file);
+
+        const res = await fetch("/detect-image", {
+          method: "POST",
+          body: formData,
+        });
+        const blob = await res.blob();
+        const imgURL = URL.createObjectURL(blob);
+
+        const stats = await (await fetch("/image_defect_stats")).json();
+        imageResultCache[imgURL] = stats;
+
+        // 🔥 메인 이미지도 누적 이미지에 추가
+        const card = document.createElement("div");
+        card.className = "image-card";
+        card.dataset.img = imgURL;
+        card.innerHTML = `
+          <button class="delete-btn">✕</button>
+          <img src="${imgURL}">
+        `;
+
+        card.querySelector("img").onclick = () => {
+          /* ✅ 선택 이미지 기준으로 상태 정리 */
+          lastImageURL = imgURL;
+          resultImg.src = imgURL;
+          resultImg.style.display = "block";
+          resultNote.style.display = "none";
+          const stats = imageResultCache[imgURL];
+          renderMetrics(stats);
+
+          // ✅ 여기 추가
+          updateNoticeByStats(stats);
+
+          /* ✅ Gemini: 캐시 있으면 “이미 분석됨” 표시, 없으면 버튼 재생성 */
+          resetGeminiUIForImage(imgURL);
+        };
+
+        card.querySelector(".delete-btn").onclick = (e) => {
+          e.stopPropagation();
+          delete imageResultCache[imgURL];
+
+          /* ✅ Gemini 캐시도 함께 삭제 */
+          delete geminiResultCache[imgURL];
+
+          card.remove();
+          updateHistoryVisibility(); // ⭐ 이 줄 추가
+
+          /* (선택) 삭제한 이미지가 현재 선택 이미지면 UI 정리 */
+          if (lastImageURL === imgURL) {
+            lastImageURL = null;
+            hideAnalyzeButton();
+            analysisArea.innerHTML = "";
+          }
+        };
+
+        imageList.appendChild(card);
+        document.querySelector(".history-row").classList.add("show");
+
+        if (isMain) {
+          lastImageURL = imgURL;
+          resultImg.src = imgURL;
+          resultImg.style.display = "block";
+          resultNote.style.display = "none";
+          renderMetrics(stats);
+
+          /* ✅ 메인 이미지도 캐시 여부에 따라 버튼/결과 표시 */
+          resetGeminiUIForImage(imgURL);
+
+          const hasAnomaly = Object.entries(stats).some(
+            ([cls, item]) => cls !== "Normal Solar Panel" && item.count > 0,
+          );
+
+          notice.innerText = hasAnomaly
+            ? "🚨 이상 탐지됨 · 부저가 3초간 동작합니다"
+            : "✅ 정상 상태입니다";
+          updateNoticeByStats(stats);
+          notice.style.color = hasAnomaly ? "#dc2626" : "#16a34a";
+        }
+      }
+
+      /* ================= 파일 처리 ================= */
+      async function processFiles(files) {
+        const imgs = files.filter(isImageFile);
+        if (!imgs.length) {
+          notice.innerText = "❗이미지 파일이 없습니다.";
+          notice.style.color = "#dc2626";
+          return;
+        }
+
+        notice.innerText = `🔍 이미지 분석 중... (${imgs.length}장)`;
+        notice.style.color = "#555";
+
+        let first = true;
+        for (const f of imgs) {
+          await detectImage(f, first);
+          first = false;
+        }
+      }
+
+      /* ================= Gemini 분석 ================= */
+      async function analyzeCurrentImage() {
+        if (!lastImageURL || !imageResultCache[lastImageURL]) return;
+
+        /* ✅ 이미 분석된 이미지면: Gemini 재호출 없이 캐시 사용 */
+        if (geminiResultCache[lastImageURL]) {
+          showGeminiResult(geminiResultCache[lastImageURL], true);
+          return;
+        }
+
+        const stats = imageResultCache[lastImageURL];
+
+        // 로딩 표시
+        analysisArea.innerHTML = "<p>🧠 AI 분석 중입니다...</p>";
+
+        const res = await fetch("/analyze-gemini", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ stats }),
+        });
+
+        const data = await res.json();
+
+        /* ✅ 캐싱 */
+        geminiResultCache[lastImageURL] = data.report;
+
+        showGeminiResult(data.report, false);
+      }
+
+      function showGeminiResult(text, fromCache = false) {
+        analysisArea.innerHTML = `
+    <div class="gemini-report">
+      <div class="report-header">
+        <span class="badge-ai">AI Report</span>
+        ${fromCache ? `<span class="badge-cached">이미 분석됨</span>` : ``}
+        <h3>Gemini 이미지 분석 결과</h3>
+      </div>
+      
+      <div class="report-body">
+        <pre id="geminiText"></pre>
+      </div>
+    </div>
+  `;
+
+        const pre = document.getElementById("geminiText");
+
+        if (fromCache) {
+          pre.innerText = text;
+        } else {
+          typeWriter(pre, text, 18);
+        }
+      }
+
+      /* ================= input ================= */
+      imageInput.addEventListener("change", async () => {
+        await processFiles(Array.from(imageInput.files || []));
+        imageInput.value = "";
+      });
+
+      folderInput.addEventListener("change", async () => {
+        await processFiles(Array.from(folderInput.files || []));
+        folderInput.value = "";
+      });
+
+      /* ================= Drag & Drop ================= */
+      dropZone.addEventListener("dragover", (e) => {
+        e.preventDefault();
+        dropZone.classList.add("drag-over");
+      });
+
+      dropZone.addEventListener("dragleave", () => {
+        dropZone.classList.remove("drag-over");
+      });
+
+      dropZone.addEventListener("drop", async (e) => {
+        e.preventDefault();
+        dropZone.classList.remove("drag-over");
+
+        const dt = e.dataTransfer;
+        const collected = [];
+
+        // 1️⃣ files는 무조건 수집 (여러 이미지 드래그 대응)
+        const directFiles = Array.from(dt.files || []).filter(isImageFile);
+        collected.push(...directFiles);
+
+        // 2️⃣ items로 폴더 재귀 처리
+        if (dt.items) {
+          for (const item of dt.items) {
+            const entry = item.webkitGetAsEntry?.();
+            if (entry && entry.isDirectory) {
+              await traverseEntry(entry, collected);
+            }
+          }
+        }
+
+        if (!collected.length) {
+          notice.innerText = "❗이미지 파일이 없습니다.";
+          notice.style.color = "#dc2626";
+          return;
+        }
+
+        await processFiles(collected);
+      });
+
+      /* ================= 초기 ================= */
+      document.addEventListener("DOMContentLoaded", () => {
+        renderMetrics();
+        updateHistoryVisibility(); // ⭐ 추가
+      });
+
+      function resetArduino() {
+        hideAnalyzeButton();
+        fetch("/arduino_reset", { method: "POST" });
+      }
+    </script>
+  </body>
+</html>

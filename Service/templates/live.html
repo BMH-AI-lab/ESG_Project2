@@ -1,0 +1,220 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <title>SolarAI | 실시간 진단</title>
+    <link rel="stylesheet" href="/static/style.css" />
+  </head>
+  <body>
+    <!-- HEADER 스크롤에 따라 내려가기 -->
+    <header class="nav sticky-header">
+      <div class="logo">
+        <a href="/" class="home-link" onclick="resetArduino()">
+          <img src="/static/home_dark.png" class="home-icon" />
+        </a>
+      </div>
+
+      <nav class="nav-buttons">
+        <a href="/image" class="nav-btn" onclick="resetArduino()"
+          >이미지 진단</a
+        >
+        <a href="/live" class="nav-btn active">실시간 진단</a>
+      </nav>
+    </header>
+
+    <!-- HERO -->
+    <section
+      class="hero sub-hero"
+      style="background-image: url(&quot;/static/card_live.jpg&quot;)"
+    >
+      <div class="hero-inner">
+        <div class="hero-text">
+          <h1>실시간 웹캠 모니터링</h1>
+          <p>
+            웹캠을 통해 태양광 패널 상태를<br />
+            실시간으로 분석합니다.
+          </p>
+          <a href="/intro" class="hero-home-btn" onclick="resetArduino()"
+            >사용방법</a
+          >
+        </div>
+      </div>
+    </section>
+
+    <!-- BODY -->
+    <main class="page-content">
+      <section class="detect-section">
+        <!-- 좌측: 웹캠 -->
+        <div class="upload-panel">
+          <h2>실시간 카메라</h2>
+          <p class="desc">
+            연결된 카메라를 통해 태양광 패널 상태를 실시간으로 확인합니다.
+          </p>
+
+          <div class="camera-box">
+            <div id="cameraStatus" class="camera-status loading">
+              📷 카메라 연결 중입니다...
+            </div>
+
+            <!-- 🔥 이게 있어야 gen_frames() 실행 -->
+            <img
+              id="cameraStream"
+              src="{{ url_for('video_feed') }}"
+              width="800"
+              height="500"
+              style="display: none"
+            />
+          </div>
+
+          <p class="note">※ AI 성능에 따라 오차가 발생할 수 있습니다.</p>
+
+          <p id="arduinoState" class="note" style="font-weight: bold">
+            🔔 Arduino 상태: 확인 중...
+          </p>
+
+          <p class="note">
+            ⌨️ 단축키: <b>S</b> = 경고 중지 / <b>R</b> = 경고 재개
+          </p>
+        </div>
+
+        <!-- 우측: 결과 -->
+        <div class="result-panel">
+          <h2>탐지 결과</h2>
+          <p class="desc">항목별 신뢰도</p>
+          <div class="match-metrics" id="matchMetrics"></div>
+          <p class="note">※ 정확도 평균치이므로 오차가 발생할 수 있습니다.</p>
+        </div>
+      </section>
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+      <div class="footer-inner">
+        <div>
+          <strong>SolarAI</strong>
+          <p>©2025 SolarAI. All rights reserved.</p>
+          <p>주소 : 서울특별시 은평구 은평로3가길 29-2</p>
+          <p>Tel : 02-5014-2907</p>
+          <div>
+            <a>이용약관 | </a>
+            <a>개인정보처리방침 | </a>
+            <a>문의하기</a>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <!-- ================= SCRIPT ================= -->
+
+    <script>
+      /* ===== 색상 ===== */
+      function getColor(p) {
+        if (p >= 80) return "#22c55e";
+        if (p >= 50) return "#facc15";
+        return "#ef4444";
+      }
+
+      /* ===== 실시간 통계 표시용 (표시만 함, 제어 ❌) ===== */
+      function updateMetrics(data) {
+        const box = document.getElementById("matchMetrics");
+        box.innerHTML = "";
+
+        const entries = Object.entries(data);
+        if (entries.length === 0) {
+          box.innerHTML = "<p style='color:#777'>탐지 결과 없음</p>";
+          return;
+        }
+
+        entries.forEach(([cls, item]) => {
+          const percent = item.percent ?? 0;
+          const count = item.count ?? 0;
+          const rounded = Math.round(percent);
+
+          box.innerHTML += `
+      <div class="metric">
+        <div class="metric-label">
+          <span>${cls}</span>
+          <span>${rounded}% (${count}건)</span>
+        </div>
+        <div class="metric-bar">
+          <div class="metric-fill"
+               style="width:${rounded}%; background:${getColor(rounded)};">
+          </div>
+        </div>
+      </div>
+    `;
+        });
+      }
+
+      /* ===== 1초마다 통계 표시만 ===== */
+      setInterval(() => {
+        fetch("/defect_stats")
+          .then((res) => res.json())
+          .then((data) => updateMetrics(data))
+          .catch(() => {});
+      }, 1000);
+    </script>
+
+    <script>
+      /* ===== 카메라 상태 표시 ===== */
+      const camImg = document.getElementById("cameraStream");
+      const camStatus = document.getElementById("cameraStatus");
+
+      const camTimeout = setTimeout(() => {
+        camStatus.innerText = "📷 카메라 연결 중입니다...";
+        camStatus.className = "camera-status error";
+      }, 20000);
+
+      camImg.onload = () => {
+        clearTimeout(camTimeout);
+        camStatus.style.display = "none";
+        camImg.style.display = "block";
+      };
+    </script>
+
+    <script>
+      /* ===== Arduino 상태 표시 (표시용만, 제어 ❌) ===== */
+      function updateArduinoStatus() {
+        fetch("/arduino_status")
+          .then((res) => res.json())
+          .then((data) => {
+            const el = document.getElementById("arduinoState");
+            el.innerText = data.enabled
+              ? "🔔 Arduino 상태: 활성화"
+              : "🔕 Arduino 상태: 중지됨";
+          })
+          .catch(() => {});
+      }
+
+      setInterval(updateArduinoStatus, 1000);
+      updateArduinoStatus();
+    </script>
+
+    <script>
+      /* ===== 키보드 제어 ===== */
+      document.addEventListener("keydown", (e) => {
+        if (e.key === "s" || e.key === "S") {
+          fetch("/arduino_enable", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ enabled: false }),
+          });
+        }
+        if (e.key === "r" || e.key === "R") {
+          fetch("/arduino_enable", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ enabled: true }),
+          });
+        }
+      });
+    </script>
+
+    <script>
+      /* ===== 페이지 이동 시만 OFF ===== */
+      function resetArduino() {
+        fetch("/arduino_reset", { method: "POST" });
+      }
+    </script>
+  </body>
+</html>

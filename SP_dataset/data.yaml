@@ -1,0 +1,13 @@
+train: C:/ESG_Project2/SP_dataset/train/images
+val: C:/ESG_Project2/SP_dataset/valid/images
+test: C:/ESG_Project2/SP_dataset/test/images
+
+nc: 5
+names: ['Anomaly Solar Panel', 'Normal Solar Panel', 'Snow', 'Structural Damage', 'Surface Contaminant']
+
+roboflow:
+  workspace: project-isgig
+  project: esg_project2
+  version: 2
+  license: CC BY 4.0
+  url: https://universe.roboflow.com/project-isgig/esg_project2/dataset/2

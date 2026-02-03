@@ -1,0 +1,292 @@
+<!-- intro.html -->
+
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <title>SolarAI | 서비스 안내</title>
+    <link rel="stylesheet" href="/static/style.css" />
+  </head>
+  <body>
+    <!-- HEADER 스크롤에 따라 내려가기 -->
+    <header class="nav sticky-header">
+      <!-- 왼쪽: 홈 버튼 -->
+      <div class="logo">
+        <a href="/" class="home-link">
+          <img src="/static/home_dark.png" class="home-icon" />
+        </a>
+      </div>
+
+      <!-- 오른쪽: 기능 버튼 -->
+      <nav class="nav-buttons">
+        <a href="/image" class="nav-btn">이미지 진단</a>
+        <a href="/live" class="nav-btn">실시간 진단</a>
+      </nav>
+    </header>
+
+    <!-- ✅ HERO (인트로만 서브페이지 다름) -->
+    <section
+      class="hero sub-hero intro-hero"
+      style="background-image: url(&quot;/static/card_intro.jpg&quot;)"
+    >
+      <!-- 🔹 히어로 내부 좌우 레이아웃 -->
+      <div class="hero-inner">
+        <!-- 좌측 텍스트 -->
+        <div class="hero-content">
+          <h1>SolarAI 서비스 안내</h1>
+          <p>
+            태양광 패널 진단을 위한 AI 기반 통합 관리 솔루션으로,<br />
+            이미지 분석과 실시간 모니터링을 통해 패널의 오염 상태와 이상 여부를
+            보다 정확하고 <br />
+            효율적으로 관리할 수 있도록 지원합니다.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===============================
+        SERVICE INTRO
+    ================================ -->
+    <main class="page-content">
+      <!-- 1️⃣ 서비스 개요 -->
+      <section class="intro-center">
+        <h2>SolarAI란?</h2>
+        <p>
+          <br />
+          SolarAI는 AI 기술을 기반으로 태양광 패널의 상태를 직관적으로
+          분석하고,<br />
+          보다 효율적인 유지·관리를 가능하게 하는 지능형 진단 서비스입니다.<br /><br />
+          이미지 업로드와 실시간 모니터링 기능을 통해 패널의 오염, 이상 상태를
+          정밀하게 분석하여,<br />
+          복잡한 전문 지식 없이도 누구나 태양광 설비의 상태를 쉽게 이해할 수
+          있도록 돕습니다.<br /><br />
+          이를 통해 발전 효율 저하 요인을 사전에 파악하고,<br />
+          유지관리 비용과 시간을 효과적으로 절감할 수 있습니다.<br /><br />
+        </p>
+      </section>
+
+      <section
+        class="feature-dark"
+        style="background-image: url(&quot;/static/hero.jpg&quot;)"
+      >
+        <!-- 어두운 오버레이 -->
+        <div class="dark-overlay"></div>
+
+        <div class="feature-inner">
+          <!-- 좌측 상단 라벨 -->
+          <span class="feature-label">SOLAR AI FEATURES</span>
+
+          <!-- 메인 문구 -->
+          <h2>
+            SolarAI는 AI로 태양광 패널을<br />
+            더 정확하게, 더 빠르게 진단합니다
+          </h2>
+          <!-- 기능 설명 -->
+          <div class="feature-desc">
+            <p>
+              <strong>SolarAI는 이런 분들을 위해 만들어졌습니다.</strong><br />
+              SolarAI는 가정에서 태양광 설비를 사용하는 개인 사용자부터, <br />
+              사업장 및 발전소를 관리하는 전문 유지보수 담당자까지 누구나 쉽게
+              활용할 수 있는 AI 기반 태양광 진단 서비스입니다.
+            </p>
+
+            <p>
+              <strong>SolarAI는 이렇게 사용합니다.</strong><br />
+              사용자는 태양광 패널 이미지를 업로드하거나 실시간 카메라 영상을
+              연결하면,<br />
+              AI가 입력된 데이터를 분석하여 패널 표면의 오염·손상·이상 영역을
+              자동으로 탐지합니다.<br />
+              분석 결과는 유형별 비율 그래프로 시각화되어 제공되어, 전문 지식
+              없이도 패널 상태를 단계적으로 확인할 수 있습니다.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- ===============================
+          IMAGE DIAGNOSIS SECTION
+      ================================ -->
+      <section class="diag-wrap">
+        <!-- TITLE -->
+        <div class="diag-title">
+          <span class="diag-sub">이미지 진단 방법</span>
+          <h2>
+            이미지 진단 <span class="diag-small">_ 어떻게 확인해주나요?</span>
+          </h2>
+          <div class="diag-line"></div>
+        </div>
+        <div class="diag-bg">
+          <div class="diag-inner">
+            <!-- COLUMN HEAD -->
+            <div class="diag-head">
+              <div>이미지 입력</div>
+              <div>AI 모델 분석</div>
+              <div>오염도 판단 및 조치 안내</div>
+            </div>
+
+            <!-- COLUMN SEPARATORS -->
+            <div class="diag-lines">
+              <div></div>
+              <div></div>
+              <div></div>
+            </div>
+
+            <!-- CONTENT -->
+            <div class="diag-body">
+              <!-- COLUMN 01 -->
+              <div class="diag-col">
+                <div class="diag-img">
+                  <img src="/static/diag_01_a.jpg" alt="" />
+                </div>
+
+                <div class="diag-text">
+                  <span class="diag-num">01.이미지 업로드 및 분석 시작</span>
+                  사용자가 태양광 패널 관련 이미지를 업로드 박스를 클릭하거나<br />
+                  드래그 앤 드롭 방식으로 업로드하면, 해당 이미지는 별도의<br />
+                  설정이나 복잡한 절차없이 자동으로 AI가 시스템에 전달됩니다.<br />
+                  업로드가 된 동시에 태양광 패널 상태에 대한 탐지가 수행되며,<br />
+                  단일 이미지 뿐만 아니라 여러 장의 이미지 또는 폴더 단위<br />
+                  업로드도 지원됩니다.<br /><br /><br />
+                </div>
+
+                <div class="diag-img">
+                  <img src="/static/diag_01_b.jpg" alt="" />
+                </div>
+              </div>
+
+              <!-- COLUMN 02 -->
+              <div class="diag-col">
+                <div class="diag-text">
+                  <span class="diag-num">02.이미지 업로드 및 분석 시작</span>
+                  AI는 이미지 내에서 오염물질이나 이상 징후로 의심되는 물질을<br />
+                  자동으로 식별하고, 탐지된 위치를 시각적으로 표시합니다.<br />
+                  한 장의 이미지에서 여러 유형의 상태가 동시에 탐지될 수<br />
+                  있으며, 각 탐지 물질은 유형별로 구분되어 반영됩니다.<br />
+                  또한, 탐지 결과에 따라 아두이노와 연동된 LED와 부저가<br />
+                  자동으로 제어되어 정상 상태와 이상 상태를 직관적으로<br />
+                  구별할 수 있도록 합니다. 여러 이미지를 대상으로 탐지를<br />
+                  수행 할 경우에는 누적 이미지 박스가 생성되며,<br />
+                  AI 탐지 결과가 반영된 태양광 패널 이미지들이 순차적으로<br />
+                  표시됩니다.
+                </div>
+
+                <div class="diag-img">
+                  <img src="/static/diag_02.jpg" alt="" />
+                </div>
+
+                <div class="diag-text">
+                  <span class="diag-num"
+                    >03.유형별 탐지 결과 및 진단 정보 제공</span
+                  >
+                  탐지가 완료되면 AI가 인식한 결과를 유형별로 분류하여,<br />
+                  각 유형에 대한 탐지 수와 평균 탐지 정확도를 화면에<br />
+                  표시합니다. 이미지 내에서 어떤 유형의 태양광 패널 상태가<br />
+                  몇 건 탐지되었는지 확인할 수 있으며, 평균 정확도는 수치와<br />
+                  그래프 형태로 함께 제공됩니다. 또한, 탐지 정확도 수준에<br />
+                  따라 그래프 색상이 구분되어 표시되며, 50% 미만은 빨간색,<br />
+                  50% 이상 80% 미만은 노란색, 80% 이상은 초록색으로<br />
+                  시각화되어 결과를 직관적으로 파악할 수 있습니다.
+                </div>
+              </div>
+
+              <!-- COLUMN 03 -->
+              <div class="diag-col">
+                <div class="diag-img">
+                  <img src="/static/diag_03_a.jpg" alt="" />
+                </div>
+
+                <div class="diag-text">
+                  <span class="diag-num">04. AI 종합 분석 리포트 제공</span>
+                  탐지 결과 분석 버튼을 클릭하면 AI가 이미지 분석 결과를<br />
+                  바탕으로 종합 리포트를 제공합니다.<br />
+
+                  리포트에는 탐지 세부 결과 요약과 함께 현재 상황의 문제점과
+                  필요한 대응 방안, 중·장기 관리 및 예방 전략이 단계별로<br />
+                  정리되어 안내됩니다.<br />
+
+                  전문 지식이 없어도 이해할 수 있도록 구성되어 현장 점검이나
+                  유지보수 계획 수립 시 참고 자료로 활용할 수 있습니다.<br /><br />
+                </div>
+
+                <div class="diag-img">
+                  <img src="/static/diag_03_b.jpg" alt="" />
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ===============================
+        실시간진단안내  REALTIME DIAGNOSIS SECTION
+      ================================ -->
+      <section
+        class="realtime-section"
+        style="background-image: url(&quot;/static/realtime_01_a.jpg&quot;)"
+      >
+        <!-- 어두운 오버레이 -->
+        <div class="realtime-overlay"></div>
+
+        <div class="realtime-inner">
+          <!-- 좌측 상단 라벨 -->
+          <span class="realtime-label">SOLAR AI FEATURES</span>
+
+          <!-- 메인 문구 -->
+          <h2 class="realtime-title">
+            실시간 진단<br />
+            <span class="realtime-sub">어떻게 확인해주나요?</span>
+          </h2>
+
+          <!-- 설명 영역 -->
+          <div class="realtime-desc">
+            <div class="desc-block">
+              <strong>01. 실시간 카메라</strong>
+              <p>
+                실시간 카메라 영상을 AI로 분석하여 태양광 패널의 오염물질을
+                식별하고,<br />
+                위치·면적·분포 특성을 분석하여 패널 상태와 이상 여부를 정밀하게
+                평가합니다.
+              </p>
+            </div>
+
+            <div class="desc-block">
+              <strong>02. 유형별 상태 시각화</strong>
+              <p>
+                AI로 생성된 다수의 탐지 박스를 평균값으로 계산하여 <br />
+                유형별 막대그래프로 시각화함으로써 태양광 패널의 상태를
+                직관적으로 확인할 수 있습니다.
+              </p>
+            </div>
+
+            <div class="desc-block">
+              <strong>03. 경고 알림</strong>
+              <p>
+                AI 분석 결과를 기반으로 아두이노와 연동된 LED 표시등과 알림
+                부저를 통해 <br />
+                패널 이상 상태를 즉각적으로 전달하여 사용자가 빠르게 인지할 수
+                있도록 지원합니다.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- ✅ 업그레이드된 FOOTER -->
+    <footer class="footer">
+      <div class="footer-inner">
+        <div>
+          <strong>SolarAI</strong>
+          <p>©2025 SolarAI. All rights reserved.</p>
+          <p>주소 : 서울특별시 은평구 은평로3가길 29-2</p>
+          <p>Tel : 02-5014-2907</p>
+          <div>
+            <a>이용약관 | </a>
+            <a>개인정보처리방침 | </a>
+            <a>문의하기</a>
+          </div>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

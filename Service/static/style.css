@@ -1,0 +1,1305 @@
+/* style.css */
+@import url("https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css");
+
+html {
+  font-size: 16px;
+}
+@media (max-width: 1200px) {
+  html {
+    font-size: 15px;
+  }
+}
+@media (max-width: 900px) {
+  html {
+    font-size: 14px;
+  }
+}
+
+body {
+  margin: 0;
+  font-family: Pretendard, sans-serif;
+  background: #fff;
+  color: #111;
+}
+
+/* ===============================
+   NAV 로고, 홈버튼
+================================ */
+/* 헤더 영역 */
+
+.nav {
+  height: 64px;
+  background: #000;
+  color: #fff;
+  padding: 0 56px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between; /* ✅로고왼쪽,홈버튼 오른쪽 */
+}
+
+.sticky-header {
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+
+.logo {
+  font-weight: 700;
+}
+
+/* ===============================
+   헤더 홈버튼 (ANIMATED)
+================================ */
+
+.nav-right {
+  display: flex;
+  align-items: center;
+}
+
+.nav-home-btn {
+  position: relative;
+  color: #fff; /* 흰색 텍스트 */
+  text-decoration: none; /* 기본 밑줄 제거 */
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  padding: 4px 0;
+}
+
+/* 가짜 밑줄 */
+.nav-home-btn::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -4px;
+  width: 0;
+  height: 2px;
+  background: #fff;
+  box-shadow: 0 0 8px rgba(255, 255, 255, 0.8); /* ✨ 은은한 빛 */
+  transition: width 0.35s ease;
+}
+
+/* hover 시 밑줄 등장 */
+.nav-home-btn:hover::after {
+  width: 100%;
+}
+
+/* ===============================
+   HERO 공통 박스
+================================ */
+.hero {
+  position: relative;
+  height: 70vh;
+  min-height: 560px;
+  background-size: cover;
+  background-position: center;
+  overflow: hidden;
+}
+
+/* 서브 페이지 히어로 어두운 오버레이 */
+.sub-hero::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.45);
+  z-index: 1;
+}
+
+/* ===============================
+   🔵 메인 페이지 히어로 (기존 그대로)
+================================ */
+.hero-content {
+  position: relative;
+  z-index: 2; /* ⭐ 오버레이 글씨 위로  */
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  color: #fff;
+  text-align: center;
+}
+/* ===============================
+   🔵 메인 페이지 히어로 오버레이
+   (서브페이지 제외)
+================================ */
+
+.hero:not(.sub-hero)::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(63, 89, 122, 0.5); /* 조절 가능 */
+  z-index: 1;
+}
+
+/* 제목 */
+.hero-content h1 {
+  font-size: clamp(2.6rem, 4.5vw, 3.4rem);
+  font-weight: 800;
+  margin-bottom: 16px;
+}
+/* 설명 */
+.hero-content p {
+  font-size: 1.05rem;
+  line-height: 1.7;
+  color: rgba(255, 255, 255, 0.85);
+}
+
+/* 메인페이지 버튼 공통 */
+.hero-buttons {
+  display: flex;
+  flex-direction: column; /* ✅ 좌우 → 위아래 */
+  gap: 25px; /* 버튼 사이 간격 */
+  margin-top: 28px;
+  align-items: center; /* 가운데 정렬 유지 */
+}
+/* ===============================
+   🔵 버튼 전체 공통 베이스(건들 xx)
+================================ */
+.btn {
+  padding: 13px 45px;
+  border: 0.8px solid #fff;
+  color: #fff;
+  text-decoration: none;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+
+  background: rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(2px);
+
+  transition: all 0.25s ease;
+}
+
+.btn:hover {
+  background: #fff; /* ✅ 흰 배경 */
+  color: #000; /* ✅ 검정 글씨 */
+}
+
+/* 메인페이지 버튼2 - 살짝 다르게?  */
+.btn-outline {
+  background: transparent;
+}
+
+/* ===============================
+   🔵 메인페이지 히어로 버튼 배경 강화
+================================ */
+
+.hero .hero-buttons .btn {
+  background: rgba(0, 0, 0, 0.2); /* ← 배경을 검정 계열로 */
+  backdrop-filter: blur(6px); /* ← 배경 흐림 강화 */
+}
+/* ===============================
+   🔵 hover 시: 흰 배경 + 검정 글씨
+================================ */
+
+.hero .hero-buttons .btn:hover {
+  background: #ffffff; /* ✅ 완전 흰색 */
+  color: #000000; /* ✅ 검정 글씨 */
+}
+
+/* ===============================
+   🔴 서브 페이지 히어로 (인트로 /이미지 / 라이브 공통)
+================================ */
+.hero-inner {
+  position: relative;
+  z-index: 2;
+  max-width: 1200px;
+  height: 100%;
+  margin: 0 auto;
+  padding: 0 48px;
+  display: flex;
+  align-items: center;
+}
+
+.hero-text {
+  max-width: 600px;
+  text-align: left; /* ✅ 가운데 → 좌측 */
+}
+
+.hero-text h1 {
+  font-size: 3rem;
+  font-weight: 700;
+  color: #fff;
+  margin-bottom: 56px; /* 위아래 글씨 간격 */
+}
+
+.hero-text p {
+  font-size: 1.1rem;
+  line-height: 1.7;
+  color: #f1f1f1;
+  margin-bottom: 56px; /* 위아래 글씨 간격 */
+}
+
+/* ===============================
+   🟣 INTRO 전용 히어로 중앙 정렬
+================================ */
+
+/* hero-inner를 가운데 정렬 */
+.intro-hero .hero-inner {
+  justify-content: center; /* 좌우 가운데 */
+  text-align: center;
+}
+.intro-hero .hero-text {
+  text-align: center;
+  margin: 0 auto;
+}
+.intro-hero .hero-action-buttons {
+  justify-content: center;
+}
+
+/* 사용방법 버튼 */
+.hero-home-btn {
+  display: inline-block;
+  padding: 10px 32px;
+  border: 1.5px solid #fff;
+  color: #fff;
+  text-decoration: none;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  background: rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(2px);
+  transition: all 0.25s ease;
+}
+.hero-home-btn:hover {
+  background: #fff;
+  color: #000;
+}
+
+/* ===============================
+   🔴 인트로 페이지 전용 히어로 버튼 그룹
+================================ */
+
+/* 버튼 컨테이너 */
+.hero-action-buttons {
+  display: flex;
+  gap: 26px; /* 버튼 사이 간격 */
+}
+
+/* 버튼 공통 스타일 (기존 HOME 버튼과 동일한 느낌) */
+.hero-action-btn {
+  display: inline-block;
+  padding: 10px 32px;
+  border: 1.5px solid #fff;
+  color: #fff;
+  text-decoration: none;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  background: rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(2px);
+  transition: all 0.25s ease;
+}
+
+/* hover 효과 */
+.hero-action-btn:hover {
+  background: #fff;
+  color: #000;
+}
+
+/* ===============================
+   메인페이지 WHITE INTRO 
+================================ */
+
+.intro-white {
+  padding: 80px 24px;
+  text-align: center;
+}
+.intro-white h2 {
+  font-size: 2.4rem;
+  font-weight: 700;
+}
+.intro-white p {
+  margin-top: 24px;
+  font-size: 1rem;
+  color: #555;
+  line-height: 1.8;
+}
+
+/* ===============================
+   카드 메인페이지 페이지이동 CARDS
+================================ */
+
+.feature-section {
+  display: flex;
+  width: 100%;
+}
+.feature-card {
+  flex: 1;
+  position: relative;
+  background-size: cover;
+  background-position: center;
+  overflow: hidden;
+
+  aspect-ratio: 3 / 2; /* ✅ 가로 3 : 세로 2 */
+}
+
+/* ===============================
+   FEATURE CARD LINK RESET
+   (밑줄 / 보라색 제거)
+================================ */
+
+/* 카드 전체 링크 기본 스타일 제거 */
+.feature-card {
+  text-decoration: none;
+  color: inherit;
+}
+
+/* 방문 후 보라색 제거 */
+.feature-card:visited {
+  color: inherit;
+  text-decoration: none;
+}
+
+/* 클릭 / 포커스 시 밑줄 제거 */
+.feature-card:active,
+.feature-card:focus {
+  text-decoration: none;
+  color: inherit;
+  outline: none;
+}
+/* 어두운 오버레이 */
+.overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.6);
+  pointer-events: none;
+}
+
+/* ===============================
+  카드 반짝임 FEATURE CARD SHIMMER EFFECT
+================================ */
+
+.feature-card::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -120%;
+  width: 90%; /* 반짝임 크기 조절 */
+  height: 100%;
+
+  background: linear-gradient(
+    100deg,
+    /* 반짝임 각도 조절 */ transparent,
+    rgba(250, 255, 255, 0.7),
+    /* 반짝임 강도 조절 */ transparent
+  );
+
+  transform: skewX(-10deg); /* 반짝임 각도 조절 */
+  transition: none;
+  pointer-events: none;
+}
+
+/* hover 시 반짝임 이동 */
+.feature-card:hover::before {
+  left: 140%;
+  transition: left 1.3s ease; /* 반짝임 속도조절 */
+}
+
+/* ===============================
+   FEATURE CARD CONTENT
+================================ */
+
+.card-content {
+  position: relative;
+  z-index: 2;
+
+  width: 100%;
+  height: 100%;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center; /* 세로 가운데 */
+  align-items: flex-start; /* 가로 가운데 */
+
+  padding: 24px;
+  box-sizing: border-box;
+
+  color: #fff;
+  text-align: left;
+}
+
+.card-content h3 {
+  font-size: clamp(1.1rem, 1.6vw, 2rem);
+  font-weight: 700;
+  margin-bottom: 12px;
+  position: relative;
+  display: inline-block; /* 밑줄 길이를 글자 기준으로 */
+}
+/* ===============================
+   FEATURE CARD TITLE ANIMATION
+================================ */
+
+/* 가짜 밑줄 */
+.card-content h3::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -6px;
+  width: 0; /* 기본: 안 보임 */
+  height: 2px;
+  background: #f3f3f3; /* 보라색 (원하면 변경) */
+  transition: width 0.3s ease;
+}
+
+/* 카드에 마우스 올리면 밑줄 등장 */
+.feature-card:hover .card-content h3::after {
+  width: 100%;
+}
+
+.card-content p {
+  font-size: clamp(0.7rem, 1.2vw, 1rem);
+  line-height: 1.6;
+  margin-bottom: 20px;
+  max-width: 90%;
+}
+
+.card-content span {
+  font-size: clamp(0.7rem, 0.9vw, 0.85rem);
+  font-weight: 600;
+  color: #a6a8b4;
+}
+
+/* ===============================
+   메인페이지 소개 구간
+================================ */
+.info {
+  padding: 140px 0;
+}
+.info-box {
+  max-width: 960px;
+  margin: 0 auto 140px;
+  display: flex;
+  gap: 40px;
+}
+.info-box.reverse {
+  flex-direction: row-reverse;
+}
+.info-box img {
+  width: 44%; /* 모든 이미지 가로 크기 동일 */
+  aspect-ratio: 4 / 3; /* ⭐ 모든 이미지 비율 통일 */
+  object-fit: cover; /* 비율 유지 + 잘라내기 */
+  border-radius: 0;
+  flex-shrink: 0; /* 줄어들 때 찌그러짐 방지 */
+}
+
+.text h2 {
+  font-size: 1.9rem; /* ⬅ 제목 크게 */
+  font-weight: 700;
+  margin-bottom: 20px;
+}
+
+.text p {
+  font-size: 1rem; /* ⬅ 내용 글씨 키움 */
+  line-height: 1.85;
+  color: #595959; /* ⬅ 회색으로 변경 */
+}
+
+/* FOOTER */
+.footer {
+  background: #000; /* ✅ 검은 배경 */
+  color: #fff;
+  padding: 60px 56px;
+}
+.footer a {
+  color: #fff; /* 링크도 흰색 */
+  text-decoration: none;
+}
+.footer a:hover {
+  opacity: 0.8;
+}
+.footer-inner {
+  display: flex;
+  justify-content: space-between;
+}
+
+/* ===============================
+   intro서비스안내 페이지 INTRO CENTER (텍스트 전용)
+================================ */
+.intro-center {
+  padding: 10px 24px 100px;
+  text-align: center;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.intro-center h2 {
+  font-size: 2.65rem;
+  font-weight: 700;
+  margin-bottom: 20px;
+}
+
+.intro-center p {
+  font-size: 1.3rem;
+  line-height: 1.9;
+  color: #555;
+}
+
+/* ===============================
+  intro 서비스안내페이지 FEATURE DARK SECTION
+================================ */
+.feature-dark {
+  position: relative;
+  background-size: cover;
+  background-position: center;
+  padding: 160px 24px;
+  color: #fff;
+}
+
+.dark-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.65);
+  z-index: 1;
+}
+
+.feature-inner {
+  position: relative;
+  z-index: 2;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+/* 좌측 상단 작은 라벨 */
+.feature-label {
+  display: block;
+  font-size: 0.75rem;
+  letter-spacing: 0.12em;
+  color: #bbb;
+  margin-bottom: 24px;
+}
+
+/* 메인 문구 */
+.feature-inner h2 {
+  font-size: 2.4rem;
+  font-weight: 700;
+  line-height: 1.4;
+  margin-bottom: 70px;
+}
+
+/* 기능 설명 */
+/* strong과 설명은 같은 p 안이므로 간섭 ❌ */
+.feature-desc strong {
+  font-size: 1.4rem;
+  font-weight: 600;
+  color: #fff;
+}
+
+/* ⭐ 핵심: 문단(p) 간격으로 다음 strong과 거리 조절 */
+.feature-desc p {
+  font-size: 1rem;
+  line-height: 1.8;
+
+  margin-top: 0; /* 위 strong과 붙이기 */
+  margin-bottom: 45px; /* ⭐ 다음 strong과의 간격 */
+}
+
+/* ===============================
+  intro서비스안내 IMAGE DIAGNOSIS SECTION
+================================ */
+/*아이보리 배경*/
+
+.diag-bg {
+  background: #fffbfb; /* 아이보리 배경 */
+  padding-top: 20px; /* 제목과 배경 사이 간격 */
+  padding-bottom: 80px;
+}
+.diag-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 32px; /* 좌우 여백만 */
+}
+.diag-wrap {
+  padding: 120px 24px; /* 섹션 위아래 여백 */
+}
+.diag-title {
+  max-width: 1200px;
+  margin: 0 auto 40px;
+}
+.diag-sub {
+  font-size: 0.85rem;
+  color: #999;
+}
+.diag-title h2 {
+  font-size: 2.6rem;
+  font-weight: 700;
+  margin: 10px 0 20px;
+}
+.diag-small {
+  font-size: 1.6rem;
+  font-weight: 400;
+}
+.diag-line {
+  width: 100%;
+  height: 3px;
+  background: #000;
+}
+/* COLUMN HEADER */
+.diag-head {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 40px; /* ⭐ 이게 핵심 */
+  font-weight: 650;
+  font-size: 1.2rem;
+  margin: 30px 0 8px;
+}
+/* COLUMN SEPARATORS */
+.diag-lines {
+  max-width: 1200px;
+  margin: 0 auto 32px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 40px; /* 👉 열 간 여백 */
+}
+.diag-lines div {
+  height: 1px;
+  background: #000;
+}
+/* CONTENT GRID */
+.diag-body {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 40px; /* 👉 열 간 여백 */
+}
+
+/* COLUMN */
+.diag-col {
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+}
+/* IMAGE */
+.diag-img img {
+  width: 100%;
+  aspect-ratio: 4 / 3; /* 이미지 비율 */
+  object-fit: cover;
+  display: block;
+  object-fit: contain;
+}
+.diag-img img {
+  border: 1px solid #e2e2e2;
+  background: #fff;
+}
+/* TEXT */
+.diag-text {
+  font-size: 0.95rem;
+  line-height: 1.7;
+  color: #0e0e0e;
+}
+/* NUMBER */
+.diag-num {
+  display: block;
+  font-weight: 700;
+  color: #6b6b6b;
+  margin-bottom: 2px;
+}
+
+/* ===============================
+  intro 서비스안내페이지 - 실시간 진단 섹션 FIX
+================================ */
+
+/* 🔥 글씨 '실시간 진단' 크기 */
+.realtime-title {
+  font-size: 2.6rem; /* 실시간 진단 크기 */
+  font-weight: 700;
+  line-height: 1.2;
+  margin-bottom: 80px; /* 🔥 제목 ↔ 설명 영역 간격 */
+
+  display: flex;
+  align-items: baseline; /* 🔥 글자 기준선 맞춤 */
+  gap: 12px; /* 실시간진단 ↔ 설명 간격 */
+}
+
+.realtime-title .realtime-sub {
+  font-size: 1.8rem; /* 설명은 작게 */
+  font-weight: 300; /* 얇게 */
+  opacity: 0.9;
+  white-space: nowrap; /* 줄바꿈 방지 */
+}
+
+/* ===============================
+  intro 실시간 진단 설명 영역 (구조 분리 버전)
+================================ */
+/* 🔥 설명 블록 단위 (strong+p 묶음) */
+.realtime-desc .desc-block {
+  margin-bottom: 43px; /* 🔥 다음 strong 블록과 간격 */
+}
+/* 🔥 소제목 */
+.realtime-desc strong {
+  display: block;
+  font-size: 1.4rem;
+  font-weight: 600;
+  margin-bottom: 9px; /* 🔥 strong ↔ 설명 간격 */
+  color: #ffffff;
+}
+/* 🔥 설명 문단 */
+.realtime-desc p {
+  margin: 0; /* ⭐ 기본 p 마진 제거 (핵심) */
+  font-size: 1rem;
+  line-height: 1.9; /* 🔥 가독성 줄간격 */
+  color: #e5e7eb;
+}
+
+/* ==================================================
+   INTRO PAGE ONLY — FINAL FIX (하단 여백 제거 + 높이 정리)
+   ⚠ 다른 페이지 영향 없음
+================================================== */
+
+/* 1️⃣ intro 페이지에서 page-content 하단 여백 제거 */
+.intro-hero ~ .page-content {
+  padding-bottom: 0;
+}
+
+/* 2️⃣ realtime 섹션 자체 높이 축소 (사진 길이 줄이기) */
+.intro-hero ~ .page-content .realtime-section {
+  padding: 120px 24px 40px; /* ⬅ 아래 여백 핵심 */
+  margin-bottom: 0; /* ❌ 겹치기 제거 */
+}
+
+/* 3️⃣ realtime 텍스트 영역 최소 안전 여백 */
+.intro-hero ~ .page-content .realtime-inner {
+  padding-bottom: 32px;
+}
+
+/* 4️⃣ footer가 바로 붙어 보이도록 미세 보정 */
+.intro-hero ~ .page-content + .footer {
+  margin-top: 0;
+}
+
+/* ===============================
+  intro 뒤에 배경
+================================ */
+
+.realtime-section {
+  position: relative;
+  background-size: cover;
+  background-position: center;
+  padding: 160px 24px; /* ⬅ 하단 padding 제거 */
+  color: #fff;
+}
+
+/* 어두운 오버레이 */
+.realtime-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.65);
+  z-index: 1;
+}
+
+/* 내용 영역 */
+.realtime-inner {
+  position: relative;
+  z-index: 2;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+/* ==================================================
+   이미지진단 페이지 IMAGE DETECTION MAIN CONTENT
+================================================== */
+
+.page-content {
+  padding: 120px 0;
+}
+
+/* ==================================================
+   detect-section: 2열 grid
+================================================== */
+.detect-section {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 32px;
+
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 64px;
+  align-items: start;
+}
+
+.upload-panel,
+.result-panel {
+  width: 100%;
+}
+
+.detect-section h2 {
+  font-size: 1.8rem;
+  font-weight: 700;
+  margin-bottom: 12px;
+}
+
+.detect-section .desc {
+  font-size: 0.95rem;
+  color: #555;
+  line-height: 1.7;
+  margin-bottom: 32px;
+}
+
+.result-panel {
+  position: static !important;
+}
+
+/* ==================================================
+   업로드 박스
+================================================== */
+
+.upload-box {
+  display: block;
+  border: 2px dashed #cfd8e3;
+  border-radius: 16px;
+  padding: 36px 24px;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  background: #fff;
+  margin-bottom: 28px;
+}
+
+.upload-box:hover {
+  border-color: #4da3ff;
+  background: #f5f9ff;
+}
+
+.upload-inner {
+  text-align: center;
+}
+
+/* ==================================================
+   결과 이미지 (중앙 + 여백 축소)
+================================================== */
+
+.result-image-large {
+  grid-column: 1 / -1;
+  display: flex;
+  flex-direction: column; /* 🔥 세로 정렬 강제 */
+  align-items: center; /* 이미지 + 버튼 중앙 */
+}
+
+.result-image-large img {
+  width: 100%;
+  max-width: 520px;
+  max-height: 520px;
+  object-fit: contain; /* 🔥 잘림 방지 */
+  border-radius: 16px;
+  border: 1px solid #e5e7eb;
+  background: #fff;
+  padding: 6px; /* 🔥 흰 여백 줄임 */
+}
+
+#resultImgTag {
+  display: none;
+}
+
+/* ==================================================
+   탐지 결과 metric
+================================================== */
+
+.match-metrics {
+  margin-top: 20px;
+}
+
+.analysis-area {
+  margin-top: 20px;
+  display: flex;
+  justify-content: flex-start; /* ❌ center → start */
+}
+
+/* ai분석하기 버튼 */
+.analysis-btn {
+  padding: 12px 22px;
+  border-radius: 999px;
+  border: 1px solid #000;
+  background: #000;
+  color: #fff;
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  cursor: pointer;
+  transition: all 0.25s ease;
+}
+
+.analysis-btn:hover {
+  background: #fff;
+  color: #000;
+}
+
+.gemini-result {
+  margin-top: 20px;
+  padding: 16px;
+  max-width: 900px;
+  background: #f8fafc;
+  border-radius: 10px;
+}
+
+.badge-cached {
+  display: inline-block;
+  margin-left: 8px;
+  padding: 2px 8px;
+  border-radius: 999px;
+  font-size: 12px;
+  font-weight: 700;
+  background: #e0f2fe;
+  color: #0369a1;
+}
+
+/* ==================================================
+   누적 이미지 섹션
+================================================== */
+
+.history-row {
+  grid-column: 1 / -1; /* 2열 합치기 */
+  margin-top: 0px;
+  padding: 0 16px;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+}
+
+.history-row.show {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.history-row h3 {
+  font-size: 1.05rem; /* ⬅ 확실히 작게 */
+  font-weight: 600; /* ⬅ 살짝 가볍게 */
+  margin-top: 0;
+  margin-bottom: 12px;
+
+  color: #64748b; /* ⬅ 이미지 박스 점선(#cbd5e1) 계열 */
+  letter-spacing: 0.04em; /* ⬅ 시스템/대시보드 느낌 */
+  text-transform: uppercase; /* ⬅ Analyzed Images랑 잘 어울림 */
+}
+
+/* ==================================================
+   누적 이미지 Grid (크기 키움 + 줄바꿈)
+================================================== */
+
+.image-list {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  min-height: 145px;
+  gap: 30px;
+
+  /* ✅ FIX: 회색 점선 테두리 */
+  border: 2px dashed #cbd5e1;
+
+  border-radius: 16px;
+  padding: 24px 20px;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  background: #fff;
+  margin-bottom: 28px;
+}
+.image-list:hover {
+  border-color: #94a3b8;
+  background: #f8fafc;
+}
+
+/* 썸네일 카드 */
+.image-list .image-card {
+  width: 100%;
+  aspect-ratio: 4 / 4;
+  border-radius: 14px;
+  overflow: hidden;
+  background: #f9fafb;
+  border: 1px solid #e5e7eb;
+  position: relative;
+}
+
+.image-list .image-card img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* 삭제 버튼 */
+.image-list .delete-btn {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  width: 26px; /* 🔥 버튼도 같이 키움 */
+  height: 26px;
+  font-size: 14px;
+  border: none;
+  border-radius: 50%;
+  background: rgba(0, 0, 0, 0.65);
+  color: #fff;
+  cursor: pointer;
+  z-index: 10;
+}
+
+.image-list .delete-btn:hover {
+  background: rgba(0, 0, 0, 0.85);
+}
+
+/* ===============================
+   Gemini 분석 결과 박스 (ANIMATED)
+   [FIX] 애니메이션 + 시스템 패널 느낌
+================================ */
+
+.gemini-report {
+  margin-top: 28px;
+
+  display: inline-flex;
+  flex-direction: column;
+
+  width: fit-content; /* 🔥 글자 기준 */
+  max-width: none; /* 🔥 크기제한 제거 */
+
+  background: linear-gradient(145deg, #2e2f35, #1f2025);
+  border-radius: 18px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+
+  box-shadow:
+    0 20px 40px rgba(0, 0, 0, 0.45),
+    inset 0 1px 0 rgba(255, 255, 255, 0.04);
+
+  overflow: hidden;
+
+  animation: geminiFadeUp 0.55s ease-out; /* 🔥 유지 */
+}
+
+/* ===============================
+   Gemini 박스 등장 애니메이션
+   [ADD]
+================================ */
+@keyframes geminiFadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(18px) scale(0.985);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+/* ===============================
+   AI Badge Pulse
+   [ADD]
+================================ */
+.badge-ai {
+  animation: aiPulse 2.4s infinite;
+}
+
+@keyframes aiPulse {
+  0% {
+    box-shadow: 0 0 0 rgba(147, 197, 253, 0);
+  }
+  50% {
+    box-shadow: 0 0 12px rgba(147, 197, 253, 0.35);
+  }
+  100% {
+    box-shadow: 0 0 0 rgba(147, 197, 253, 0);
+  }
+}
+/* ===============================
+   Gemini 박스 Hover 반응
+   [ADD]
+================================ */
+.gemini-report:hover {
+  transform: translateY(-2px);
+  transition: transform 0.25s ease;
+}
+
+.report-header {
+  padding: 16px 20px;
+  border-bottom: 1px solid #1f2937;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  background: rgba(0, 0, 0, 0.35); /* [ADD] */
+  backdrop-filter: blur(8px); /* [ADD] */
+}
+
+.report-header h3 {
+  margin: 0;
+  font-size: 1rem;
+  font-weight: 600;
+  color: #fff;
+}
+
+.badge-ai {
+  font-size: 11px;
+  font-weight: 700;
+  padding: 4px 10px;
+  border-radius: 999px;
+  background: #111827;
+  color: #93c5fd;
+}
+
+.report-body {
+  padding: 20px;
+  display: grid;
+  gap: 16px;
+}
+
+.report-body pre {
+  margin: 0;
+  white-space: pre-wrap;
+  word-break: keep-all;
+  line-height: 1.75;
+  font-size: 0.9rem;
+  font-family: Pretendard, sans-serif;
+  color: #e5e7eb;
+}
+
+/* ==================================================
+   반응형
+================================================== */
+
+@media (max-width: 1200px) {
+  .image-list {
+    grid-template-columns: repeat(5, 1fr);
+  }
+}
+
+@media (max-width: 900px) {
+  .image-list {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+@media (max-width: 600px) {
+  .image-list {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+/* ===============================
+  실시간 진단페이지 YOLO Metrics Panel
+================================ */
+
+.yolo-metrics {
+  margin-top: 24px;
+}
+
+.metric-item {
+  margin-bottom: 22px;
+}
+
+.metric-header {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.95rem;
+  font-weight: 600;
+  margin-bottom: 6px;
+}
+
+.class-name {
+  color: #111;
+}
+
+.score {
+  color: #1f6fff;
+}
+
+.bar {
+  width: 100%;
+  height: 10px;
+  background: #eaeaea;
+  border-radius: 6px;
+  overflow: hidden;
+}
+
+.fill {
+  height: 100%;
+  background: linear-gradient(90deg, #4da3ff, #1f6fff);
+  border-radius: 6px;
+  transition: width 0.4s ease;
+}
+
+.sub-metrics {
+  margin-top: 6px;
+  font-size: 0.8rem;
+  color: #666;
+}
+
+.note {
+  margin-top: 28px;
+  font-size: 0.8rem;
+  color: #777;
+}
+
+/* ==================웹캠========================= */
+.match-metrics {
+  margin-top: 20px;
+}
+
+.metric {
+  margin-bottom: 14px;
+}
+
+.metric-label {
+  display: flex;
+  justify-content: space-between;
+  font-size: 14px;
+  margin-bottom: 4px;
+}
+
+.metric-bar {
+  width: 100%;
+  height: 10px;
+  background: #e5e7eb;
+  border-radius: 6px;
+  overflow: hidden;
+}
+
+.metric-fill {
+  height: 100%;
+  transition: width 0.4s ease;
+}
+
+.camera-status {
+  width: 800px;
+  height: 450px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
+  border-radius: 8px;
+}
+
+.camera-status.loading {
+  background: #111;
+  color: #aaa;
+}
+
+/* ==================================== */
+.home-link {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  text-decoration: none;
+  color: white;
+  font-weight: 700;
+  font-size: 20px;
+}
+
+.home-icon {
+  height: 110px;
+  width: auto;
+  display: block;
+  transform: translateY(10px); /* ⭐ 사진 가운데정렬맞춤 */
+}
+
+.nav-buttons {
+  display: flex;
+  gap: 14px;
+}
+
+.nav-btn {
+  padding: 8px 16px;
+  border-radius: 20px;
+  background: #111;
+  color: white;
+  text-decoration: none;
+  font-size: 14px;
+}
+
+.nav-btn-outline {
+  background: transparent;
+  color: #111;
+  border: 1px solid #111;
+}
+
+.nav-btn:hover {
+  opacity: 0.85;
+}
