@@ -51,7 +51,7 @@ train_results = model.train(
 <img width="446" height="124" alt="Image" src="https://github.com/user-attachments/assets/0247f35e-5cee-4db2-ab0a-9517b21c513a" />
 </p>
 
-<p align="center">
+<p align="center"><br/><br/>
 <img width="724" height="257" alt="Image" src="https://github.com/user-attachments/assets/47168521-fe2d-4c96-a398-e9183df04945" />
 </p>
 
