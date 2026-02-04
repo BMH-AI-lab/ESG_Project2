@@ -13,7 +13,7 @@
     alt="Image"
   />
   <br>
-  <sub><b><h3>Solar AI</b></sub>
+  <sub><b>SOLAR AI</b></sub>
 </p>
 
 
