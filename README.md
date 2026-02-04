@@ -7,16 +7,22 @@
 
 <table align="center">
   <tr>
-    <td style="border: 1px solid #000000;">
+    <td style="border: 2px solid #0c0c0c; padding: 6px;">
       <img
-        src="https://github.com/user-attachments/assets/1d4ce90b-5077-4bed-b724-f07aa0dbd542"
+        src="https://github.com/user-attachments/assets/94eb5536-3ac4-491b-88f9-9906b580f67b"
         width="2522"
         height="1350"
         alt="Image"
       />
     </td>
   </tr>
+  <tr>
+    <td align="center">
+      <sub><Solar AI></sub>
+    </td>
+  </tr>
 </table>
+
 
 
 **2.모델 학습** 
