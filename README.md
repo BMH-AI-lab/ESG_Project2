@@ -9,7 +9,7 @@
   <tr>
     <td style="border: 5px solid #000000;">
       <img
-        src="https://github.com/user-attachments/assets/1d4ce90b-5077-4bed-b724-f07aa0dbd542"
+        src="https://github.com/user-attachments/assets/580831e1-69f6-4c41-b8d0-2141d6041bb0" 
         width="2522"
         height="1350"
         alt="Image"
