@@ -17,6 +17,10 @@
 </p>
 
 
+<br/>
+<br/>
+<br/>
+
 **2.모델 학습** 
 - Google Colab에서 모델 학습을 하였음 
 - 객체 탐지 모델에는 YOLO26 nano를 사용(YOLO12 모델 학습도 했음)
@@ -47,6 +51,9 @@ train_results = model.train(
 
 
 ```
+<br/>
+<br/>
+<br/>
 
 **3. 이미지 및 실시간 탐지 모듈** 
 - 아두이노 기술 활용 
@@ -62,7 +69,11 @@ train_results = model.train(
 <img width="646" height="324" alt="Image" src="https://github.com/user-attachments/assets/47168521-fe2d-4c96-a398-e9183df04945" />
 </p>
 
-**4.  태양광 패널 이상 탐지 시스템 기능** 
+<br/>
+<br/>
+<br/>
+
+**4. AI 기반 태양광 패널 이상 탐지 시스템 기능** 
 - 이미지 탐지 
     * 태양광 패널에 대한 이미지를 한장 또는 여러 장으로 업로드(폴더 째로도 가능)
     * 업로드를 하면 객체 탐지 모델이 자동으로 태양광 패널의 상태를 탐지
