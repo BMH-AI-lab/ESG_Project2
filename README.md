@@ -63,12 +63,27 @@ train_results = model.train(
     - 정상 태양광 패널이면 LED가 파랑색 불빛을 냄 
     - 이상 탐지 관련 정상 태양광 패널이면 LED가 빨간색 불빛을 내며 부저가 울림 
 
-<p align="center">
-<img width="646" height="324" alt="Image" src="https://github.com/user-attachments/assets/0247f35e-5cee-4db2-ab0a-9517b21c513a" />
-</p>
 
 <p align="center">
-<img width="646" height="324" alt="Image" src="https://github.com/user-attachments/assets/47168521-fe2d-4c96-a398-e9183df04945" />
+  <img
+  src="https://github.com/user-attachments/assets/0247f35e-5cee-4db2-ab0a-9517b21c513a"
+    width="646"
+    height="324"
+    alt="Image"
+  />
+</p>
+
+<br/>
+
+<p align="center">
+  <img
+  src="https://github.com/user-attachments/assets/47168521-fe2d-4c96-a398-e9183df04945"
+    width="646"
+    height="324"
+    alt="Image"
+  />
+  <br>
+  <sub><b>이미지 및 실시간 탐지 모듈</b></sub>
 </p>
 
 <br/>
@@ -87,9 +102,18 @@ train_results = model.train(
         * 탐지된 이미지 중에 분석을 하고 싶을 때 Gemini 분석을 통해 분석이 가능
             * 분석 결과에는 탐지 결과에 대한 상세 설명과 문제점, 대응방안, 중 • 장기 관리 및 예방 전략을 알려줌 
 
+
 <p align="center">
-<img width="640" height="640" alt="Image" src="https://github.com/user-attachments/assets/face4815-91a2-471e-8ddc-13ed9944c414" />
+  <img
+  src="https://github.com/user-attachments/assets/face4815-91a2-471e-8ddc-13ed9944c414"
+    width="640"
+    height="640"
+    alt="Image"
+  />
+  <br>
+  <sub><b>이미지 탐지 기능</b></sub>
 </p>
+
 
 - 실시간 탐지 
     * 카메라 웹캠을 통해 실시간으로 탐지 
@@ -102,6 +126,14 @@ train_results = model.train(
         * 24시간 아두이노 부저가 울리면 밤 환경시 소음으로 번질 수 있음 
             * 키보드 기능을 통해 아두이노 기능을 정지 하거나 재개할 수 있음 (S: STOP, R: RESUME)
 
+
 <p align="center">
-<img width="709" height="239" alt="Image" src="https://github.com/user-attachments/assets/6cec956d-d9a9-46f1-a8d3-cf1d2b76bd49" />
+  <img
+  src="https://github.com/user-attachments/assets/6cec956d-d9a9-46f1-a8d3-cf1d2b76bd49"
+    width="640"
+    height="640"
+    alt="Image"
+  />
+  <br>
+  <sub><b>실시간 탐지 기능</b></sub>
 </p>
