@@ -6,16 +6,13 @@
 - Flask를 통해 만들어진 웹페이지를 통해 시스템을 구현
 
 <p align="center">
-  <tr>
-    <td style="border: 0px solid #000000;">
-      <img
-        src="https://github.com/user-attachments/assets/580831e1-69f6-4c41-b8d0-2141d6041bb0" 
-        width="2522"
-        height="1350"
-        alt="Image"
-      />
-    </td>
-  </tr>
+  <img
+    src="https://github.com/user-attachments/assets/1d4ce90b-5077-4bed-b724-f07aa0dbd542"
+    width="2522"
+    height="1350"
+    border="2"
+    alt="Image"
+  />
 </p>
 
 
