@@ -18,7 +18,7 @@
   </tr>
   <tr>
     <td align="center">
-      <sub><Solar AI></sub>
+      <sub>Solar AI</sub>
     </td>
   </tr>
 </table>
