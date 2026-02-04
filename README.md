@@ -24,7 +24,7 @@
 - Google Colab에서 모델 학습을 하였음 
 - 객체 탐지 모델에는 YOLO26 nano를 사용(YOLO12 모델 학습도 했음)
 - 하이퍼 파라미터는 YOLO26에서 주는 기본 파라미터를 사용 
-- 모델 학습 코드 
+
 ```python
 
 from ultralytics import YOLO
@@ -50,6 +50,8 @@ train_results = model.train(
 
 
 ```
+<sub><b>모델 학습 코드</b></sub>
+
 <br/>
 
 
