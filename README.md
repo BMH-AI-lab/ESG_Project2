@@ -29,7 +29,7 @@ train_results = model.train(
     imgsz=640,  # Image size for training
     device=0,
     # 학습이 중단 되면 써야 되는 코드
-    resume=True,
+    # resume=True,
 
     # 학습 결과 저장
     project="C:/ESG_Project2/yolov26n_train_result/",
