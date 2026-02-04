@@ -5,18 +5,14 @@
 - 객체 탐지 모델, 아두이노, Gemini 기술을 활용 
 - Flask를 통해 만들어진 웹페이지를 통해 시스템을 구현
 
-<table align="center">
-  <tr>
-    <td style="border: 0px solid #000000;">
+<p align="center">
       <img
         src="https://github.com/user-attachments/assets/580831e1-69f6-4c41-b8d0-2141d6041bb0" 
         width="2522"
         height="1350"
         alt="Image"
       />
-    </td>
-  </tr>
-</table>
+</p>
 
 
 **2.모델 학습** 
