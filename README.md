@@ -50,7 +50,9 @@ train_results = model.train(
 
 
 ```
+<p align="center">
 <sub><b>모델 학습 코드</b></sub>
+</p>
 
 <br/>
 
