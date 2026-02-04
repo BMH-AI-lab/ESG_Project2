@@ -40,7 +40,6 @@ train_results = model.train(
 
 ```
 
-
 **3. 이미지 및 실시간 탐지 모듈** 
 - 아두이노 기술 활용 
 - 객체 탐지 모델에서 나오는 탐지 결과에 따라 반응
@@ -48,11 +47,11 @@ train_results = model.train(
     - 이상 탐지 관련 정상 태양광 패널이면 LED가 빨간색 불빛을 내며 부저가 울림 
 
 <p align="center">
-<img width="446" height="124" alt="Image" src="https://github.com/user-attachments/assets/0247f35e-5cee-4db2-ab0a-9517b21c513a" />
+<img width="646" height="324" alt="Image" src="https://github.com/user-attachments/assets/0247f35e-5cee-4db2-ab0a-9517b21c513a" />
 </p>
 
 <p align="center">
-<img width="446" height="124" alt="Image" src="https://github.com/user-attachments/assets/47168521-fe2d-4c96-a398-e9183df04945" />
+<img width="646" height="324" alt="Image" src="https://github.com/user-attachments/assets/47168521-fe2d-4c96-a398-e9183df04945" />
 </p>
 
 **4.  태양광 패널 이상 탐지 시스템 기능** 
