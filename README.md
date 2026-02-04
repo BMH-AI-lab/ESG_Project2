@@ -74,8 +74,6 @@ train_results = model.train(
   <br>
 </p>
 
-<br/>
-
 <p align="center">
   <img
   src="https://github.com/user-attachments/assets/47168521-fe2d-4c96-a398-e9183df04945"
