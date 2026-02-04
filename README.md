@@ -13,7 +13,7 @@
     alt="Image"
   />
   <br>
-  <sub><b>SOLAR AI</b></sub>
+  <sub><b>[SOLAR AI]</b></sub>
 </p>
 
 
@@ -51,7 +51,7 @@ train_results = model.train(
 
 ```
 <p align="center">
-<sub><b>모델 학습 코드</b></sub>
+<sub><b>[모델 학습 코드]</b></sub>
 </p>
 
 <br/>
@@ -84,7 +84,7 @@ train_results = model.train(
     alt="Image"
   />
   <br>
-  <sub><b>이미지 및 실시간 탐지 모듈</b></sub>
+  <sub><b>[이미지 및 실시간 탐지 모듈]</b></sub>
 </p>
 
 <br/>
@@ -112,7 +112,7 @@ train_results = model.train(
     alt="Image"
   />
   <br>
-  <sub><b>이미지 탐지 기능</b></sub>
+  <sub><b>[이미지 탐지 기능]</b></sub>
 </p>
 
 
