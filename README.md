@@ -136,5 +136,5 @@ train_results = model.train(
     alt="Image"
   />
   <br>
-  <sub><b>실시간 탐지 기능</b></sub>
+  <sub><b>[실시간 탐지 기능]</b></sub>
 </p>
