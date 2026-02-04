@@ -18,8 +18,7 @@
 
 
 <br/>
-<br/>
-<br/>
+
 
 **2.모델 학습** 
 - Google Colab에서 모델 학습을 하였음 
@@ -52,8 +51,7 @@ train_results = model.train(
 
 ```
 <br/>
-<br/>
-<br/>
+
 
 **3. 이미지 및 실시간 탐지 모듈** 
 - 아두이노 기술 활용 
@@ -70,8 +68,7 @@ train_results = model.train(
 </p>
 
 <br/>
-<br/>
-<br/>
+
 
 **4. AI 기반 태양광 패널 이상 탐지 시스템 기능** 
 - 이미지 탐지 
