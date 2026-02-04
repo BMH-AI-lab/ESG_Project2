@@ -5,24 +5,16 @@
 - 객체 탐지 모델, 아두이노, Gemini 기술을 활용 
 - Flask를 통해 만들어진 웹페이지를 통해 시스템을 구현
 
-<table align="center">
-  <tr>
-    <td style="border: 2px solid #0c0c0c; padding: 6px;">
-      <img
-        src="https://github.com/user-attachments/assets/fa77ac9f-d432-4a7c-861f-1152fb3af9c0"
-        width="2522"
-        height="1350"
-        alt="Image"
-      />
-    </td>
-  </tr>
-  <tr>
-    <td align="center">
-      <sub>Solar AI</sub>
-    </td>
-  </tr>
-</table>
-
+<p align="center">
+  <img
+  src="https://github.com/user-attachments/assets/fa77ac9f-d432-4a7c-861f-1152fb3af9c0"
+    width="2522"
+    height="1350"
+    alt="Image"
+  />
+  <br>
+  <sub><b>Solar AI</b></sub>
+</p>
 
 
 **2.모델 학습** 
