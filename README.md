@@ -6,7 +6,8 @@
 - Flask를 통해 만들어진 웹페이지를 통해 시스템을 구현
 - 객체 탐지 모델에는 YOLO26 nano를 사용
 
-<img width="1280" height="761" alt="Image" src="https://github.com/user-attachments/assets/a9c35da1-9932-449d-a5a8-a6eb1f7ce4dd" />
+<img width="638" height="263" alt="Image" src="https://github.com/user-attachments/assets/9047e9a0-5971-417e-a183-1d988eeddb3b" />
+<img width="2522" height="1350" alt="Image" src="https://github.com/user-attachments/assets/1d4ce90b-5077-4bed-b724-f07aa0dbd542" />
 
 **2. 기능** 
 - 이미지 탐지 
@@ -16,6 +17,8 @@
         * 이상 탐지 클래스이면 LED가 빨간색 불빛을 내며 부저가 울림 
     * 탐지된 이미지 중에 분석을 하고 싶을 때 Gemini 분석을 통해 분석이 가능
         * 분석 결과에는 탐지 결과에 대한 상세 설명과 문제점, 대응방안, 중 • 장기 관리 및 예방 전략을 알려줌 
+
+<img width="664" height="271" alt="Image" src="https://github.com/user-attachments/assets/3ebdc7c5-6bf2-43cd-8a33-3d152a67fd76" />
 
 - 실시간 탐지 
     * 카메라 웹캠을 통해 실시간으로 탐지 
