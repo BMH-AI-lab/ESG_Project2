@@ -12,6 +12,7 @@
     height="1350"
     alt="Image"
   />
+  <br>
   <sub><b>SOLAR AI</b></sub>
 </p>
 
@@ -70,6 +71,7 @@ train_results = model.train(
     height="324"
     alt="Image"
   />
+  <br>
 </p>
 
 <br/>
@@ -81,6 +83,7 @@ train_results = model.train(
     height="324"
     alt="Image"
   />
+  <br>
   <sub><b>이미지 및 실시간 탐지 모듈</b></sub>
 </p>
 
@@ -108,6 +111,7 @@ train_results = model.train(
     height="640"
     alt="Image"
   />
+  <br>
   <sub><b>이미지 탐지 기능</b></sub>
 </p>
 
@@ -131,5 +135,6 @@ train_results = model.train(
     height="640"
     alt="Image"
   />
+  <br>
   <sub><b>실시간 탐지 기능</b></sub>
 </p>
