@@ -65,7 +65,7 @@ train_results = model.train(
         * 분석 결과에는 탐지 결과에 대한 상세 설명과 문제점, 대응방안, 중 • 장기 관리 및 예방 전략을 알려줌 
 
 <p align="center">
-<img width="912" height="815" alt="Image" src="https://github.com/user-attachments/assets/30528131-627e-44b6-8adc-874decc3152b" />
+<img width="904" height="802" alt="Image" src="https://github.com/user-attachments/assets/face4815-91a2-471e-8ddc-13ed9944c414" />
 </p>
 
 - 실시간 탐지 
