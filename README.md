@@ -7,7 +7,7 @@
 
 <table align="center">
   <tr>
-    <td style="border: 5px solid #000000;">
+    <td style="border: 0px solid #000000;">
       <img
         src="https://github.com/user-attachments/assets/580831e1-69f6-4c41-b8d0-2141d6041bb0" 
         width="2522"
