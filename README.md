@@ -75,7 +75,7 @@ train_results = model.train(
     * 탐지한 결과에 따라 아두이노가 반응하며 정상이면 LED가 파랑색 불빛을 냄    
         * 이상 탐지 클래스이면 LED가 빨간색 불빛을 내며 부저가 울림
     * 24시간 아두이노 부저가 울리면 밤 환경시 소음으로 번질 수 있음 
-        * 키보드 기능을 통해 아두이노 기능을 정지 밀 재개할 수 있음 (S: STOP, R: RESUME)
+        * 키보드 기능을 통해 아두이노 기능을 정지 하거나 재개할 수 있음 (S: STOP, R: RESUME)
 
 <p align="center">
 <img width="709" height="239" alt="Image" src="https://github.com/user-attachments/assets/6cec956d-d9a9-46f1-a8d3-cf1d2b76bd49" />
