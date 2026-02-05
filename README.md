@@ -128,7 +128,7 @@ train_results = model.train(
 
 <p align="center">
   <img
-  src="https://github.com/user-attachments/assets/6cec956d-d9a9-46f1-a8d3-cf1d2b76bd49"
+    src="https://github.com/user-attachments/assets/3631324c-9d2c-4527-8748-1ba9774f13c3" 
     width="640"
     height="640"
     alt="Image"
