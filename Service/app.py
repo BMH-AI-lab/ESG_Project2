@@ -34,7 +34,7 @@ CLASS_ORDER = [
     "Normal Solar Panel",
     "Snow",
     "Structural Damage",
-    "Surface Contaminant" # n모델 사용시 s추가
+    "Surface Contaminant" 
 ]
 NORMAL_CLASS = "Normal Solar Panel"
 
